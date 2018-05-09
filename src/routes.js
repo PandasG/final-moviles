@@ -21,6 +21,14 @@ import {
   Navbars,
   Navs,
   Paginations,
+  Performance,
+  Security,
+  Reachability,
+  Storage,
+  StratPerformance,
+  StratSecurity,
+  StratReachability,
+  StratStorage,
   Popovers,
   ProgressBar,
   SimpleLineIcons,
@@ -38,7 +46,7 @@ import DefaultLayout from './containers/DefaultLayout';
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/theme', exact: true, name: 'Theme', component: Colors },
+  { path: '/pages', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
   { path: '/base', exact: true, name: 'Base', component: Cards },
@@ -74,6 +82,15 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/charts', name: 'Charts', component: Charts },
+  { path: '/performance', name: 'Performance', component: Performance },
+  { path: '/security', name: 'Security', component: Security },
+  { path: '/strat/storage', name: 'StratStorage', component: StratStorage },
+  { path: '/reachability', name: 'Reachability', component: Reachability },
+  { path: '/storage', name: 'Storage', component: Storage },
+  { path: '/strat/performance', name: 'StratPerformance', component: StratPerformance },
+  { path: '/strat/security', name: 'StratSecurity', component: StratSecurity },
+  { path: '/strat/reachability', name: 'StratReachability', component: StratReachability },
+
 ];
 
 export default routes;

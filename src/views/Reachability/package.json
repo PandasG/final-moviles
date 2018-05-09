@@ -1,0 +1,6 @@
+{
+  "name": "Reachability",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Reachability.js"
+}

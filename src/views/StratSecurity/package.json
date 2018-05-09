@@ -1,0 +1,6 @@
+{
+  "name": "StratSecurity",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./StratSecurity.js"
+}
