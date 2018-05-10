@@ -50,11 +50,6 @@ export default {
       icon: 'icon-support',
     },
     {
-      name: 'About us',
-      url: '/bugzilla',
-      icon: 'icon-star',
-    },
-    {
       name: 'Clone Firefox Repo',
       url: 'https://github.com/mozilla-mobile/firefox-ios',
       icon: 'icon-cloud-download',
