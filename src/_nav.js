@@ -5,7 +5,7 @@ export default {
       url: '/dashboard',
       icon: 'icon-speedometer',
       badge: {
-        variant: 'info',
+        variant: 'info ',
         text: 'NEW',
       },
     },*/
@@ -51,7 +51,7 @@ export default {
     },
     {
       name: 'About us',
-      url: '/pages',
+      url: '/bugzilla',
       icon: 'icon-star',
     },
     {
