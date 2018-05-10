@@ -34,128 +34,53 @@ class Bugzilla extends Component {
           <Col xs="12" sm="12" md="6">
             <Card className="card-accent-secondary just">
               <CardHeader>
-                <i className="fa fa-lightbulb-o " /> <strong>Estrategia de análisis</strong>
+                <i className="fa fa-question " /> <strong>Qué es Bugzilla</strong>
               </CardHeader>
               <CardBody>
-                La mayor parte del análisis se hizo revisando meticulosamente el código y utilizando el logger para
-                entender las acciones de los usuarios y su impacto en la aplicación. Principalmente, probamos las
-                diferentes reacciones de la aplicación con y sin internet, y cómo reaccionaba a perder la conexión en la
-                mitad de las funcionalidades principales. Finalmente, nos guiamos con la documentación de las librerías
-                utilizadas para entender mejor su uso.
+                Firefox para iOS es una aplicación open source, lo que significa que una parte muy importante de la
+                misma es la comunidad que tiene detrás. Mozilla tiene una comunidad muy grande que colabora
+                desarrollando gran parte de sus productos, y tiene por lo tanto varios canales de comunicación donde se
+                pueden reportar bugs, encontrar documentación y noticias, entre otros. Estos incluyen la página principal
+                del proyecto en github y un blog de developers con noticias y tutoriales. Una de las herramientas más
+                importantes para el desarrollo de los productos es Bugzilla, una página donde se lleva constancia de
+                todos los bugs reportados, su estado, y otra información relevante a los mismos.
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
             <Card className="border-secondary just">
               <CardHeader>
-                <i className="fa fa-google" /> Verificar conexión
+                <i className="fa fa-bug" /> Bug resuelto
               </CardHeader>
               <CardBody>
-                La aplicación utiliza SCNetworkReachability, de la librería nativa System, para verificar si el
-                dispositivo tiene conexión a internet (y además, el tipo de conexión, como WLAN o WiFi). Para esto,
-                utilizan la la función SCNetworkReachabilitySetCallback, que monitorea un target específico para
-                analizar su estado de conexión, y se crea un loop que lo revisa constantemente. Sin embargo, nos
-                dimos cuenta de que aunque se crea una notificación en el NotificationCenter
-                (ReachabilityStatusChanged), no hay ningún observador en la aplicación que esté esperando esta
-                notificación. Por lo tanto, aunque tiene el potencial de darse cuenta del momento en que la conexión
-                vuelve a establecerse, no se utiliza en ningún momento. Adicionalmente, se notó que para esta
-                aplicación, se utiliza “google.com” para verificar la conexión.
-
+                Escogimos {' '}
+                <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1248993" target="_blank">un bug</a> {' '}
+                marcado como resuelto para ver si podíamos encontrar la manera en la que se había arreglado en la
+                aplicación. El bug llamaba a agregar un nuevo test de UI para probar una adición de un {' '}
+                <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1246923" target="_blank">
+                  bug anterior
+                </a>,
+                donde se inhabilitó el botón de editar cuando la lista de perfiles estaba vacía. Ambos bugs cuentan con
+                el historial de comentarios donde se explica el bug y donde alguien decide hacerse cargo del mismo, y
+                tiene los links que llevan a los pull requests donde se hizo el respectivo arreglo. Tras revisar en el
+                código, encontramos que los dos arreglos estaban donde debían, y que funcionaban correctamente.
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
             <Card className="border-secondary just">
               <CardHeader>
-                <i className="fa fa-refresh fa-spin" /><i className="fa fa-cog fa-spin" /> Sincronizaciones automáticas
+                <i className="fa fa-bug" /><i className="fa fa-star" /> Nuestro bug
               </CardHeader>
               <CardBody>
-                En particular, conocer el estado de la red es importante para las sincronizaciones. En el caso de las
-                sincronizaciones automáticas, el request es creado sin observar si hay o no conexión. La aplicación sólo
-                se da cuenta de que no existe una conexión cuando esta petición falla. Ya que las sincronizaciones
-                automáticas se encuentran en un loop, el sistema simplemente espera a que se repita la petición, y no
-                espera ser avisado de una conexión.
-
-                <br/><br/>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="12" md="6">
-            <Card className="border-secondary just">
-              <CardHeader>
-                <i className="fa fa-refresh" /><i className="fa fa-hand-o-up" /> Sincronizaciones manuales
-              </CardHeader>
-              <CardBody>
-                Para el caso de las sincronizaciones manuales, el manejo es un poco diferente. Al entrar en la sección
-                de ajustes, la aplicación pregunta por el estado de conexión. Si no hay conexión, la aplicación no
-                permite hacer la sincronización manual. De lo contrario, si lo permite.
-                <br/> <br/>
-                <div>
-                  <img className="centert" src={img5} width={'55%'}/>
-                </div>
-                <br/> <br/>
-                <div>
-                  <img className="centert" src={img6} width={'55%'}/>
-                </div>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="12" md="6">
-            <Card className="border-secondary just">
-              <CardHeader>
-                <i className="fa fa-bug" /> Bug encontrado #1
-              </CardHeader>
-              <CardBody>
-                Notamos que en la etapa de sincronizaciones manuales, si el internet se va después de que la vista ha
-                sido cargada, no se cambia automáticamente. Entonces, es posible iniciar una sincronización manual a
-                pesar de no tener conexión. Esto causa un comportamiento extraño. El botón de sincronizar se queda
-                presionado, y la sincronización no ocurre. Hasta que no se recarga la vista, el botón no se deselecciona
-                y muestra que no hay conexión.
-                <br/><br/>
-                <div>
-                  <img className="centert" src={img7} width={'55%'}/>
-                </div>
-                <br/>
-                Este error podría evitarse si se hiciera uso de la notificación de ReachabilityStatusChanged mencionada
-                anteriormente, y se hiciera el cambio a la interfaz tan pronto la conexión se perdiera. También sería
-                bueno que al volver, el botón estuviera disponible nuevamente sin necesidad de recargar la vista de ajustes.
-
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="12" md="6">
-            <Card className="border-secondary just">
-              <CardHeader>
-                <i className="fa fa-bug" /> Bug encontrado #2
-              </CardHeader>
-              <CardBody>
-                Se detectó un bug extraño en el cual, a pesar de poder reconocer que no había conexión, en vez de
-                mostrar la página que informa de esto, la aplicación no respondía a los clicks en las páginas
-                <br/><br/>
-                <YouTube
-                  videoId="EbZScQH2ZOE"
-                  opts={opts}
-                  onReady={this._onReady}
-                />
-                <br/> <br/>
-                Parece suceder después de cambiar de pestañas después de la primera vez que se detecta que no hay
-                internet. En ocasiones, como en el video, la barra inferior desaparece y es imposible acceder a las tabs
-                abiertas, ajustes, o información de la cuenta. La barra inferior desaparece tras tratar de recargar la
-                página haciendo click en la barra de navegación y luego click en Go. En la sección de bugzilla hablamos
-                del reporte que hicimos en la plataforma de este bug.
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="12" md="6">
-            <Card className="border-secondary just">
-              <CardHeader>
-                <i className="fa fa-ban" /> Comportamiento en caso de no haber conexión
-              </CardHeader>
-              <CardBody>
-                Para el caso del WebView en particular, firefox utiliza una librería de apple llamada WebKit. Al tratar
-                de acceder a una página cuando no hay internet, la navegación se cancela y la vista predeterminada de
-                error se presenta en el browser utilizando Webkit.
-
+                Por otro lado, decidimos hacer el proceso de reportar uno de los bugs que encontramos. El proceso de
+                reporte de bugs está debidamente documentado, con instrucciones detalladas para crear bugs que sean
+                útiles. Es tan fácil como crear una cuenta en bugzilla y seguir los pasos indicados. El reporte del
+                bug que creamos se puede encontrar públicamente en la {' '}
+                <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1460457" target="_blank">
+                  página de Bugzilla
+                </a>. Al momento de escribir este
+                reporte, el bug no ha sido confirmado, pero esperamos seguir su desenlace de ahora en adelante.
               </CardBody>
             </Card>
           </Col>
