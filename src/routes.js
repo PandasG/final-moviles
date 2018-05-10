@@ -25,10 +25,7 @@ import {
   Security,
   Reachability,
   Storage,
-  StratPerformance,
-  StratSecurity,
-  StratReachability,
-  StratStorage,
+  Bugzilla,
   Popovers,
   ProgressBar,
   SimpleLineIcons,
@@ -84,12 +81,9 @@ const routes = [
   { path: '/charts', name: 'Charts', component: Charts },
   { path: '/performance', name: 'Performance', component: Performance },
   { path: '/security', name: 'Security', component: Security },
-  { path: '/strat/storage', name: 'StratStorage', component: StratStorage },
   { path: '/reachability', name: 'Reachability', component: Reachability },
   { path: '/storage', name: 'Storage', component: Storage },
-  { path: '/strat/performance', name: 'StratPerformance', component: StratPerformance },
-  { path: '/strat/security', name: 'StratSecurity', component: StratSecurity },
-  { path: '/strat/reachability', name: 'StratReachability', component: StratReachability },
+  { path: '/bugzilla', name: 'Bugzilla', component: Bugzilla },
 
 ];
 

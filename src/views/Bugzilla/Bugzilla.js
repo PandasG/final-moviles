@@ -5,7 +5,7 @@ import img6 from '../../assets/img6.png';
 import img7 from '../../assets/img7.png';
 import { Card, CardBody, CardHeader, Col, Row, Jumbotron, Container } from 'reactstrap';
 
-class Reachability extends Component {
+class Bugzilla extends Component {
 
   _onReady(event) {
     // access to player in all event handlers via event.target
@@ -26,13 +26,13 @@ class Reachability extends Component {
           <Col xs="12" sm="12" md="6">
             <Jumbotron fluid>
               <Container fluid>
-                <h1 className="display-3">Técnicas de manejo de conectividad eventual</h1>
-                <p className="lead">Verificación de conexión, sincronizaciones y bugs</p>
+                <h1 className="display-3">Bugzilla</h1>
+                <p className="lead">Reporte de bugs</p>
               </Container>
             </Jumbotron>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="card-accent-warning just">
+            <Card className="card-accent-secondary just">
               <CardHeader>
                 <i className="fa fa-lightbulb-o " /> <strong>Estrategia de análisis</strong>
               </CardHeader>
@@ -46,26 +46,26 @@ class Reachability extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-google" /> Verificar conexión
               </CardHeader>
               <CardBody>
-                    La aplicación utiliza SCNetworkReachability, de la librería nativa System, para verificar si el
-                    dispositivo tiene conexión a internet (y además, el tipo de conexión, como WLAN o WiFi). Para esto,
-                    utilizan la la función SCNetworkReachabilitySetCallback, que monitorea un target específico para
-                    analizar su estado de conexión, y se crea un loop que lo revisa constantemente. Sin embargo, nos
-                    dimos cuenta de que aunque se crea una notificación en el NotificationCenter
-                    (ReachabilityStatusChanged), no hay ningún observador en la aplicación que esté esperando esta
-                    notificación. Por lo tanto, aunque tiene el potencial de darse cuenta del momento en que la conexión
-                    vuelve a establecerse, no se utiliza en ningún momento. Adicionalmente, se notó que para esta
-                    aplicación, se utiliza “google.com” para verificar la conexión.
+                La aplicación utiliza SCNetworkReachability, de la librería nativa System, para verificar si el
+                dispositivo tiene conexión a internet (y además, el tipo de conexión, como WLAN o WiFi). Para esto,
+                utilizan la la función SCNetworkReachabilitySetCallback, que monitorea un target específico para
+                analizar su estado de conexión, y se crea un loop que lo revisa constantemente. Sin embargo, nos
+                dimos cuenta de que aunque se crea una notificación en el NotificationCenter
+                (ReachabilityStatusChanged), no hay ningún observador en la aplicación que esté esperando esta
+                notificación. Por lo tanto, aunque tiene el potencial de darse cuenta del momento en que la conexión
+                vuelve a establecerse, no se utiliza en ningún momento. Adicionalmente, se notó que para esta
+                aplicación, se utiliza “google.com” para verificar la conexión.
 
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-refresh fa-spin" /><i className="fa fa-cog fa-spin" /> Sincronizaciones automáticas
               </CardHeader>
@@ -81,7 +81,7 @@ class Reachability extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-refresh" /><i className="fa fa-hand-o-up" /> Sincronizaciones manuales
               </CardHeader>
@@ -101,7 +101,7 @@ class Reachability extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-bug" /> Bug encontrado #1
               </CardHeader>
@@ -124,7 +124,7 @@ class Reachability extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-bug" /> Bug encontrado #2
               </CardHeader>
@@ -147,7 +147,7 @@ class Reachability extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-warning just">
+            <Card className="border-secondary just">
               <CardHeader>
                 <i className="fa fa-ban" /> Comportamiento en caso de no haber conexión
               </CardHeader>
@@ -165,4 +165,4 @@ class Reachability extends Component {
   }
 }
 
-export default Reachability;
+export default Bugzilla;

@@ -1,0 +1,6 @@
+{
+  "name": "Bugzilla",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Bugzilla.js"
+}

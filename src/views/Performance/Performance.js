@@ -17,7 +17,7 @@ class Performance extends Component {
             <Jumbotron fluid>
               <Container fluid>
                 <h1 className="display-3">Técnicas de desempeño</h1>
-                <p className="lead">Verificación de conexión, sincronizaciones y bugs</p>
+                <p className="lead">Hallazgos en el código, Codacy, Tracking Protection y Progressive Web Apps</p>
               </Container>
             </Jumbotron>
           </Col>

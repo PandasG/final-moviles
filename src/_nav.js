@@ -11,35 +11,6 @@ export default {
     },*/
     {
       title: true,
-      name: 'Strategy',
-      wrapper: {            // optional wrapper object
-        element: '',        // required valid HTML5 element tag
-        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
-      },
-      class: ''             // optional class names space delimited list for title item ex: "text-center"
-    },
-    {
-      name: 'Performance Strategy',
-      url: '/strat/performance',
-      icon: 'icon-chart',
-    },
-    {
-      name: 'Security Strategy',
-      url: '/strat/security',
-      icon: 'icon-lock',
-    },
-    {
-      name: 'Reachability Strategy',
-      url: '/strat/reachability',
-      icon: 'icon-vector',
-    },
-    {
-      name: 'Storage Strategy',
-      url: '/strat/storage',
-      icon: 'icon-disc',
-    },
-    {
-      title: true,
       name: 'Results',
       wrapper: {
         element: '',
@@ -72,6 +43,11 @@ export default {
     {
       title: true,
       name: 'Extras',
+    },
+    {
+      name: 'Bugzilla',
+      url: '/bugzilla',
+      icon: 'icon-support',
     },
     {
       name: 'About us',

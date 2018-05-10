@@ -19,7 +19,7 @@ class Storage extends Component {
             </Jumbotron>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="card-accent-primary just">
+            <Card className="card-accent-success just">
               <CardHeader>
                 <i className="fa fa-lightbulb-o " /> <strong>Estrategia de análisis</strong>
               </CardHeader>
@@ -33,7 +33,7 @@ class Storage extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-primary just">
+            <Card className="border-success just">
               <CardHeader>
                 <i className="fa fa-database" /> SQLite
               </CardHeader>
@@ -57,7 +57,7 @@ class Storage extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-primary just">
+            <Card className="border-success just">
               <CardHeader>
                 <i className="fa fa-tasks" /> Información almacenada
               </CardHeader>
@@ -85,7 +85,7 @@ class Storage extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-primary just">
+            <Card className="border-success just">
               <CardHeader>
                 <i className="fa fa-refresh" /><i className="fa fa-hand-o-up" /> Sincronizaciones manuales
               </CardHeader>
@@ -99,7 +99,7 @@ class Storage extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-primary just">
+            <Card className="border-success just">
               <CardHeader>
                 <i className="fa fa-refresh fa-spin" /><i className="fa fa-cog fa-spin" /> Sincronizaciones automáticas
               </CardHeader>
@@ -118,7 +118,7 @@ class Storage extends Component {
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card className="border-primary just">
+            <Card className="border-success just">
               <CardHeader>
                 <i className="fa fa-spinner fa-spin" />Synchronizer
               </CardHeader>

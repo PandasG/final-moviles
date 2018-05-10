@@ -25,10 +25,7 @@ import Performance from './Performance';
 import Security from './Security';
 import Storage from './Storage';
 import Reachability from './Reachability';
-import StratPerformance from './StratPerformance';
-import StratSecurity from './StratSecurity';
-import StratStorage from './StratStorage';
-import StratReachability from './StratReachability';
+import Bugzilla from './Bugzilla';
 import { Flags, FontAwesome, SimpleLineIcons } from './Icons';
 import { Alerts, Badges, Modals } from './Notifications';
 import { Login, Page404, Page500, Register } from './Pages';
@@ -65,10 +62,7 @@ export {
   Security,
   Reachability,
   Storage,
-  StratPerformance,
-  StratSecurity,
-  StratReachability,
-  StratStorage,
+  Bugzilla,
   ProgressBar,
   Popovers,
   Navs,
