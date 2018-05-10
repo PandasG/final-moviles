@@ -101,7 +101,7 @@ class Storage extends Component {
           <Col xs="12" sm="12" md="6">
             <Card className="border-primary just">
               <CardHeader>
-                <i className="fa fa-refresh" /><i className="fa fa-cog" /> Sincronizaciones automáticas
+                <i className="fa fa-refresh fa-spin" /><i className="fa fa-cog fa-spin" /> Sincronizaciones automáticas
               </CardHeader>
               <CardBody>
                 Las sincronizaciones automáticas ocurren de dos maneras diferentes: en primer lugar, cuando la
@@ -120,7 +120,7 @@ class Storage extends Component {
           <Col xs="12" sm="12" md="6">
             <Card className="border-primary just">
               <CardHeader>
-                <i className="fa fa-refresh" />Synchronizer
+                <i className="fa fa-spinner fa-spin" />Synchronizer
               </CardHeader>
               <CardBody>
                 Todo esto está modularizado en diferentes clases que se encargan de sincronizar cada tipo de

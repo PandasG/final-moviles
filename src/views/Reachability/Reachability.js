@@ -1,149 +1,162 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import YouTube from 'react-youtube';
+import img5 from '../../assets/img5.png';
+import img6 from '../../assets/img6.png';
+import img7 from '../../assets/img7.png';
+import img4 from '../../assets/img4.png';
+import { Card, CardBody, CardHeader, Col, Row, Jumbotron, Container } from 'reactstrap';
 
 class Reachability extends Component {
+
+  _onReady(event) {
+    // access to player in all event handlers via event.target
+    event.target.pauseVideo();
+  }
+
   render() {
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 1
+      }
+    };
     return (
-      <div className="animated fadeIn">
+      <div className="animated fadeIn body">
         <Row>
           <Col xs="12" sm="12" md="6">
-            <Card>
+            <Jumbotron fluid>
+              <Container fluid>
+                <h1 className="display-3">Técnicas de manejo de conectividad eventual</h1>
+                <p className="lead">Verificación de conexión, sincronizaciones y bugs</p>
+              </Container>
+            </Jumbotron>
+          </Col>
+          <Col xs="12" sm="12" md="6">
+            <Card className="card-accent-success just">
               <CardHeader>
-                <i className="fa fa-database" /> SQLite
+                <i className="fa fa-lightbulb-o " /> <strong>Estrategia de análisis</strong>
               </CardHeader>
               <CardBody>
-                La aplicación utiliza SCNetworkReachability, de la librería nativa System, para verificar si el
-                dispositivo tiene conexión a internet (y además, el tipo de conexión, como WLAN o WiFi). Para esto,
-                utilizan la la función SCNetworkReachabilitySetCallback, que monitorea un target específico para
-                analizar su estado de conexión, y se crea un loop que lo revisa constantemente. Sin embargo, nos dimos
-                cuenta de que aunque se crea una notificación en el NotificationCenter (ReachabilityStatusChanged), no
-                hay ningún observador en la aplicación que esté esperando esta notificación. Por lo tanto, aunque tiene
-                el potencial de darse cuenta del momento en que la conexión vuelve a establecerse, no se utiliza en
-                ningún momento. Es curioso mencionar que para esta aplicación, se utiliza “google.com” para verificar
-                la conexión.
-                <br/><br/>
-                <strong>
-                  IMAGEN IMAGEN <br />
-                  Sin embargo, esto significa que las herramientas tradicionales de perfilamiento para CoreData no
-                  pueden ser utilizadas, como el instrumento de CoreData reads and writes. Por esta razón, la mayor parte
-                  del análisis se hizo a mano, revisando cuidadosamente el código de la aplicación y utilizándola para
-                  entender su comportamiento dadas las acciones de los usuarios, con logs, prints, y el instrumento de
-                  TimeProfiler, que nos permitió ver, aunque vagamente, una parte del CallStack de la aplicación.
-                </strong>
-                <br /><br />
-                Al instalar la aplicación, se crea un esquema de base de datos de SQLite que contiene la información
-                que debe ser guardada localmente, como:
-                <ul>
-                  <li>Las pestañas abiertas</li>
-                  <li>El historial</li>
-                  <li>Los favoritos</li>
-                  <li>Las descargas</li>
-                  <li>La información de cuenta y de logins</li>
-                  <li>La lista de lectura </li>
-                </ul>
-                Al momento de cambiar cualquiera de estas, por ejemplo, al momento de abrir una nueva pestaña o de
-                marcar un sitio como favorito, esta tabla local se actualiza. Esto asegura que la información local
-                no se pierda en ningún momento, aunque la aplicación se cierre o el dispositivo se apague.
-                <br /><br />
-                Esta información (a excepción de las descargas, que son locales y específicas del dispositivo, no
-                de la cuenta) se sincroniza con la información online en el background, de estar loggeado a la cuenta.
-                De no ser así, no es necesario sincronizar esta información con la nube, y permanece local. Existen
-                las sincronizaciones automáticas, es decir, iniciadas por el sistema, y las manuales, es decir, las
-                iniciadas por el usuario.
-                <br /><br />
-                Las sincronizaciones manuales se pueden iniciar desde el menú de ajustes de la aplicación:
-                <strong>
-                  IMAGEN IMAGEN <br />
-                </strong>
-                En este lugar se muestra la última sincronización realizada y se permite iniciar una nueva.
-                <br/><br/>
-                Las sincronizaciones automáticas ocurren de dos maneras diferentes: en primer lugar, cuando la
-                aplicación se vuelve “activa”, y si la última sincronización ocurrió hace más de 15 minutos, se hace una
-                sincronización de “apertura”, para ofrecer al usuario la información más actualizada de su cuenta. Esta
-                sincronización ocurre en el Main Thread. Después de esto, se programa un Timer para que cada 15 minutos
-                se intente sincronizar toda la información. Esto corre en un thread de background.
-                <br/><br/>
-                <strong>IMG IMG IMG</strong>
-                <br/><br/>
-                Todo esto está modularizado en diferentes clases que se encargan de sincronizar cada tipo de
-                información. Todas heredan de la misma clase, Synchronizer, que permite saber el estado de la
-                sincronización y maneja los posibles tipos de error que se den en el proceso.
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
-                <br/><br/>
+                La mayor parte del análisis se hizo revisando meticulosamente el código y utilizando el logger para
+                entender las acciones de los usuarios y su impacto en la aplicación. Principalmente, probamos las
+                diferentes reacciones de la aplicación con y sin internet, y cómo reaccionaba a perder la conexión en la
+                mitad de las funcionalidades principales. Finalmente, nos guiamos con la documentación de las librerías
+                utilizadas para entender mejor su uso.
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xs="12" sm="12" md="6">
+            <Card className="border-success just">
+              <CardHeader>
+                <i className="fa fa-google" /> Verificar conexión
+              </CardHeader>
+              <CardBody>
+                    La aplicación utiliza SCNetworkReachability, de la librería nativa System, para verificar si el
+                    dispositivo tiene conexión a internet (y además, el tipo de conexión, como WLAN o WiFi). Para esto,
+                    utilizan la la función SCNetworkReachabilitySetCallback, que monitorea un target específico para
+                    analizar su estado de conexión, y se crea un loop que lo revisa constantemente. Sin embargo, nos
+                    dimos cuenta de que aunque se crea una notificación en el NotificationCenter
+                    (ReachabilityStatusChanged), no hay ningún observador en la aplicación que esté esperando esta
+                    notificación. Por lo tanto, aunque tiene el potencial de darse cuenta del momento en que la conexión
+                    vuelve a establecerse, no se utiliza en ningún momento. Adicionalmente, se notó que para esta
+                    aplicación, se utiliza “google.com” para verificar la conexión.
+
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xs="12" sm="12" md="6">
+            <Card className="border-success just">
+              <CardHeader>
+                <i className="fa fa-refresh fa-spin" /><i className="fa fa-cog fa-spin" /> Sincronizaciones automáticas
+              </CardHeader>
+              <CardBody>
+                En particular, conocer el estado de la red es importante para las sincronizaciones. En el caso de las
+                sincronizaciones automáticas, el request es creado sin observar si hay o no conexión. La aplicación sólo
+                se da cuenta de que no existe una conexión cuando esta petición falla. Ya que las sincronizaciones
+                automáticas se encuentran en un loop, el sistema simplemente espera a que se repita la petición, y no
+                espera ser avisado de una conexión.
+
                 <br/><br/>
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card>
+            <Card className="border-success just">
+              <CardHeader>
+                <i className="fa fa-refresh" /><i className="fa fa-hand-o-up" /> Sincronizaciones manuales
+              </CardHeader>
               <CardBody>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Para el caso de las sincronizaciones manuales, el manejo es un poco diferente. Al entrar en la sección
+                de ajustes, la aplicación pregunta por el estado de conexión. Si no hay conexión, la aplicación no
+                permite hacer la sincronización manual. De lo contrario, si lo permite.
+                <br/> <br/>
+                <div>
+                  <img className="centert" src={img5} width={'55%'}/>
+                </div>
+                <br/> <br/>
+                <div>
+                  <img className="centert" src={img6} width={'55%'}/>
+                </div>
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card>
+            <Card className="border-success just">
               <CardHeader>
-                <i className="fa fa-check "></i>Card with icon
+                <i className="fa fa-bug" /> Bug encontrado #1
               </CardHeader>
               <CardBody>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Notamos que en la etapa de sincronizaciones manuales, si el internet se va después de que la vista ha
+                sido cargada, no se cambia automáticamente. Entonces, es posible iniciar una sincronización manual a
+                pesar de no tener conexión. Esto causa un comportamiento extraño. El botón de sincronizar se queda
+                presionado, y la sincronización no ocurre. Hasta que no se recarga la vista, el botón no se deselecciona
+                y muestra que no hay conexión.
+                <br/><br/>
+                <div>
+                  <img className="centert" src={img7} width={'55%'}/>
+                </div>
+                <br/>
+                Este error podría evitarse si se hiciera uso de la notificación de ReachabilityStatusChanged mencionada
+                anteriormente, y se hiciera el cambio a la interfaz tan pronto la conexión se perdiera. También sería
+                bueno que al volver, el botón estuviera disponible nuevamente sin necesidad de recargar la vista de ajustes.
+
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card>
+            <Card className="border-success just">
               <CardHeader>
-                Card with switch
+                <i className="fa fa-bug" /> Bug encontrado #2
               </CardHeader>
               <CardBody>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Se detectó un bug extraño en el cual, a pesar de poder reconocer que no había conexión, en vez de
+                mostrar la página que informa de esto, la aplicación no respondía a los clicks en las páginas
+                <br/><br/>
+                <YouTube
+                  videoId="EbZScQH2ZOE"
+                  opts={opts}
+                  onReady={this._onReady}
+                />
+                <br/> <br/>
+                Parece suceder después de cambiar de pestañas después de la primera vez que se detecta que no hay
+                internet. En ocasiones, como en el video, la barra inferior desaparece y es imposible acceder a las tabs
+                abiertas, ajustes, o información de la cuenta. La barra inferior desaparece tras tratar de recargar la
+                página haciendo click en la barra de navegación y luego click en Go. En la sección de bugzilla hablamos
+                del reporte que hicimos en la plataforma de este bug.
               </CardBody>
             </Card>
           </Col>
           <Col xs="12" sm="12" md="6">
-            <Card>
+            <Card className="border-success just">
               <CardHeader>
-                Card with label
-                <Badge color="success" className="float-right">Success</Badge>
+                <i className="fa fa-ban" /> Comportamiento en caso de no haber conexión
               </CardHeader>
               <CardBody>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xs="12" sm="12" md="6">
-            <Card>
-              <CardHeader>
-                Card with label
-                <Badge pill color="danger" className="float-right">42</Badge>
-              </CardHeader>
-              <CardBody>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Para el caso del WebView en particular, firefox utiliza una librería de apple llamada WebKit. Al tratar
+                de acceder a una página cuando no hay internet, la navegación se cancela y la vista predeterminada de
+                error se presenta en el browser utilizando Webkit.
+
               </CardBody>
             </Card>
           </Col>
